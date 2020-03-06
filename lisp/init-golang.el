@@ -47,4 +47,11 @@
              :commands yas-minor-mode
              :hook (go-mode . yas-minor-mode))
 
+;; go tags
+(use-package go-add-tags
+  :ensure t
+  :config (custom-set-variables
+           '(go-add-tags-style 'snake-case))
+  :hook (go-mode))
+
 (provide 'init-golang)
