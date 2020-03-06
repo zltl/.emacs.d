@@ -1,4 +1,6 @@
 
+(require 'init-load)
+
 (load-vendor-path "vendor/go-mod")
 
 (autoload 'go-mode "go-mode" nil t)
@@ -48,10 +50,10 @@
              :hook (go-mode . yas-minor-mode))
 
 ;; go tags
-(use-package go-add-tags
-  :ensure t
-  :config (custom-set-variables
-           '(go-add-tags-style 'snake-case))
-  :hook (go-mode))
+;(use-package go-add-tags
+;  :ensure t
+;  :config (custom-set-variables
+;           '(go-add-tags-style 'snake-case))
+;  :hook (go-mode))
 
 (provide 'init-golang)
