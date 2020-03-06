@@ -1,0 +1,11 @@
+/auto-save-list
+*~
+#*
+.#*
+/ido.last
+/places
+/smex-items
+/elpa*
+/backups
+/.lsp-session-v1
+vendor_xx
