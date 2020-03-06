@@ -47,7 +47,17 @@
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'elisp-slime-nav-mode))
 
+;; autopair
+(load-vendor-path "vendor/autopair")
+(require 'autopair)
+
+(autopair-global-mode) ;; enable autopair in all buffers
+
 (require 'init-golang)
+
+(use-package undo-tree
+  :ensure t
+  :commands (global-undo-tree-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -56,7 +66,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck company-lsp lsp-ui lsp-mode yasnippet company))))
+    (undo-tree flycheck company-lsp lsp-ui lsp-mode yasnippet company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

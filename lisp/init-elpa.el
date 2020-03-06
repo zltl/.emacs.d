@@ -8,7 +8,7 @@
 (when (and (version< emacs-version "26.3") (boundp 'libgnutls-version) (>= libgnutls-version 30604))
   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 (setq package-enable-at-startup nil)
-;; (setq package-check-signature nil)
+(setq package-check-signature nil)
 (package-initialize)
 ;; Load package contents if not present
 (when (not package-archive-contents)
