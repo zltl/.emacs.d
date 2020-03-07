@@ -59,9 +59,8 @@
 (require 'init-golang)
 (require 'init-lsp)
 (require 'init-yasnippet)
-
 (require 'init-git)
-
+(require 'init-csv)
 
 (use-package undo-tree
   :ensure t
