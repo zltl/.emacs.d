@@ -15,15 +15,16 @@
 (require 'init-elpa)
 
 ;; better defaults
-(load-vendor-path "vendor/better-defaults")
 (require 'better-defaults)
 
-;;; load configs for specific features and mods
+;;; load configs for specific features and modes
 
 (use-package diminish)
 (maybe-require-package 'scratch)
 (use-package command-log-mode
   :ensure t)
+
+(require 'init-themes)
 
 ;; smex
 (require 'smex)
@@ -50,9 +51,12 @@
 (require 'autopair)
 (autopair-global-mode) ;; enable autopair in all buffers
 
+(require 'init-company)
+(require 'init-ivy)
 (require 'init-golang)
+(require 'init-lsp)
 
-(use-package undo-tree
+ (use-package undo-tree
   :ensure t
   :commands (global-undo-tree-mode))
 
