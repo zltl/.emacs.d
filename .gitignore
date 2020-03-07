@@ -10,3 +10,6 @@
 /.lsp-session-v1
 vendor_xx
 /custom.el
+.cache/
+transient/
+

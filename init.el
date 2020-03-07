@@ -9,6 +9,7 @@
 
 ;; first load
 (require 'init-load)
+(require 'cl)
 
 ;; init package.el, and other helper function
 ;; Calls (package-initialize)
@@ -53,10 +54,16 @@
 
 (require 'init-company)
 (require 'init-ivy)
+(require 'init-treemacs)
+(require 'init-cc)
 (require 'init-golang)
 (require 'init-lsp)
+(require 'init-yasnippet)
 
- (use-package undo-tree
+(require 'init-git)
+
+
+(use-package undo-tree
   :ensure t
   :commands (global-undo-tree-mode))
 

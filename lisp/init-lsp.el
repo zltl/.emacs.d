@@ -2,27 +2,32 @@
 ;;; lsp mode
 (use-package lsp-mode
   :ensure t
-  :commands (lsp lsp-deferred)
   :hook
-  (go-mode . lsp-deferred)
-  (c++-mode . lsp-defered))
+  (go-mode . lsp-deferred))
 
 ;; Optional - provides fancier overlays.
 (use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
+  :ensure t)
 
 ;; company-lsp integrates company mode completion with lsp-mode.
 ;; completion-at-point also works out of the box but doesn't support snippets.
 (use-package company-lsp
-  :ensure t
-  :commands company-lsp)
+  :ensure t)
 
 (use-package lsp-ivy
-  :ensure t
-  :commands lsp-ivy-workspace-symbol)
+  :ensure t)
 
 (use-package lsp-treemacs
-  :commands lsp-treemacs-errors-list)
+  :commands
+  (lsp-treemacs-errors-list
+   lsp-treemacs-symbols-list
+   lsp-treemacs-references
+   lsp-treemacs-implementations
+   lsp-treemacs-call-hierarchy
+   lsp-treemacs-deps-list
+   lsp-metals-treeview)
+  :config
+  (lsp-metals-treeview-enable t))
+
 
 (provide 'init-lsp)
