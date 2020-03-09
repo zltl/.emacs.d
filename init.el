@@ -20,7 +20,8 @@
 
 ;;; load configs for specific features and modes
 
-(use-package diminish)
+(use-package diminish
+             :ensure t)
 (maybe-require-package 'scratch)
 (use-package command-log-mode
   :ensure t)
