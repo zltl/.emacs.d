@@ -10,9 +10,13 @@
                          user-emacs-directory)))
   (setq package-user-dir versioned-package-dir))
 
-(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-                         ("melpa" . "http://elpa.emacs-china.org/melpa/")
-                         ("melpa-stable" . "http://elpa.emacs-china.org/melpa-stable/")))
+;; (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+;;                          ("melpa" . "http://elpa.emacs-china.org/melpa/")
+;;                          ("melpa-stable" . "http://elpa.emacs-china.org/melpa-stable/")))
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+                         ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")))
+
 
 ;; Work-around for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341
 (when (and (version< emacs-version "26.3") (boundp 'libgnutls-version) (>= libgnutls-version 30604))
