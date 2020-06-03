@@ -8,8 +8,9 @@
 /elpa*
 /backups
 /.lsp-session-v1
-vendor_xx
+/vendor_xx
 /custom.el
-.cache/
-transient/
+/.cache/
+/transient/
+/irony
 

@@ -7,6 +7,8 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+(setq default-buffer-file-coding-system 'utf-8-unix)
+
 ;; first load
 (require 'init-load)
 (require 'cl)
