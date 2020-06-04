@@ -67,7 +67,7 @@
 
 (use-package undo-tree
   :ensure t
-  :commands (global-undo-tree-mode))
+  :init (global-undo-tree-mode))
 
 ;; Variables configured via the interactive 'customize' interface
 (when (file-exists-p custom-file)
