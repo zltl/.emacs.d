@@ -1,11 +1,6 @@
 (require 'cl)
 (require 'cc-mode)
 
-(use-package google-c-style
-  :ensure t
-  :config
-  (add-hook 'c-mode-common-hook 'google-make-newline-indent)
-  (add-hook 'c-mode-common-hook 'google-set-c-style))
 
 (use-package cmake-mode
   :init
@@ -56,16 +51,57 @@
   (setq cmake-ide-flags-c (append (mapcar (lambda (path) (concat "-I" path)) (semantic-gcc-get-include-paths "c"))))
   (cmake-ide-setup))
 
-(use-package dumb-jump
-  :bind (("M-g o" . dumb-jump-go-other-window)
-         ("M-." . dumb-jump-go)
-         ("M-," . dumb-jump-back)
-         ("M-g i" . dumb-jump-go-prompt)
-         ("M-g x" . dumb-jump-go-prefer-external)
-         ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-  :ensure)
+(define-key c-mode-base-map (kbd "RET") 'newline-and-indent)
 
+(defun my-c-mode-common-hook ()
+  ;; my customizations for all of c-mode and related modes  
+  (require 'dumb-jump)
+  (lsp)
+  (setq dumb-jump-selector 'ivy)  
+  (local-set-key (kbd "M-g .") 'dumb-jump-go)
+  (local-set-key (kbd "M-g ,") 'dumb-jump-back)
+  (local-set-key (kbd "M-g o") 'dumb-jump-go-other-window)
+  (local-set-key (kdb "M-g i") 'dumb-jump-go-prompt)
+  (local-set-key (kbd "M-g x") 'dumb-jump-go-prefer-external)
+  (setq default-tab-width 4)  
+  (local-set-key (kbd "M-g z") 'dumb-jump-go-prefer-external-other-window))
 
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+(defun maybe-linux-style ()
+  (when (and buffer-file-name
+	     (string-match "linux" buffer-file-name))
+    (c-set-style "Linux")))
+
+(setq-default indent-tabs-mode nil
+      tab-width 4
+      c-indent-tabs-mode t
+      c-indent-level 4
+      c-argdecl-indent 0
+      c-tab-always-indent t
+      backward-delete-function nil
+      c-basic-offset 4)
+
+(c-add-style "my-c-style" '((c-continued-statement-offset 4))) ; If a statement continues on the next line, indent the continuation by 4
+
+(defun my-c-hook ()
+  (c-set-style "my-c-style")
+  (c-set-offset 'substatement-open '0)
+  (c-set-offset 'inline-open '+)
+  (c-set-offset 'block-open '+)
+  (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
+  (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
+
+(defun my-c++-hook () 
+  (use-package google-c-style
+	       :ensure t
+	       :config
+	       (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+	       (add-hook 'c-mode-common-hook 'google-set-c-style))
+  )
+
+(add-hook 'c-mode-hook 'my-c-hook)
+(add-hook 'c++-mode-hook 'my-c++-hook)
+(add-hook 'c-mode-hook 'maybe-linux-style)
 
 (provide 'init-cc)

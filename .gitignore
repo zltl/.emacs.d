@@ -13,4 +13,5 @@
 /.cache/
 /transient/
 /irony
-
+\#*
+/eshell

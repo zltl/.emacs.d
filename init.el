@@ -30,6 +30,8 @@
 
 (require 'init-themes)
 
+(require 'init-dir)
+
 ;; smex
 (require 'smex)
 (smex-initialize)
@@ -58,8 +60,8 @@
 (require 'init-company)
 (require 'init-ivy)
 (require 'init-treemacs)
-(require 'init-cc)
 (require 'init-golang)
+(require 'init-cc)
 (require 'init-lsp)
 (require 'init-yasnippet)
 (require 'init-git)
