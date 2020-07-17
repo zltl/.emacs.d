@@ -11,7 +11,7 @@
 
 ;; first load
 (require 'init-load)
-(require 'cl)
+(require 'cl-lib)
 
 ;; init package.el, and other helper function
 ;; Calls (package-initialize)
