@@ -48,6 +48,9 @@
 ;; find-file-in-project
 (require 'find-file-in-project)
 
+(setq create-lockfiles nil)
+(setq make-backup-files nil)
+
 ;; slime-style navigation for emacs lisp
 (require 'elisp-slime-nav)
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
