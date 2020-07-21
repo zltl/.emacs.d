@@ -25,8 +25,8 @@
   :requires hydra helm helm-lsp  
   :hook
   (go-mode . lsp-deferred)
-  (c++-mode . lsp-deferred)
-  (c-mode . lsp-deferred)
+  ;; (c++-mode . lsp-deferred)
+  ;; (c-mode . lsp-deferred)
   (python-mode . lsp-deferred)
   :config
   (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))

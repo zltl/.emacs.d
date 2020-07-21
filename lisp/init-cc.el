@@ -56,7 +56,7 @@
 (defun my-c-mode-common-hook ()
   ;; my customizations for all of c-mode and related modes  
   (require 'dumb-jump)
-  (lsp)
+  ;; (lsp)
   (setq dumb-jump-selector 'ivy)  
   (local-set-key (kbd "M-g .") 'dumb-jump-go)
   (local-set-key (kbd "M-g ,") 'dumb-jump-back)
@@ -109,6 +109,11 @@
   (interactive "DDirectory: ")
   (eshell-command 
     (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
+
+(use-package ccls
+             :ensure t
+             :hook ((c-mode c++-mode objc-mode) .
+                    (lambda () (require 'ccls) (lsp))))
 
 
 (provide 'init-cc)
