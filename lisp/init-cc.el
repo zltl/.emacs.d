@@ -108,12 +108,6 @@
   "Create tags file."
   (interactive "DDirectory: ")
   (eshell-command 
-    (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
-
-(use-package ccls
-             :ensure t
-             :hook ((c-mode c++-mode objc-mode) .
-                    (lambda () (require 'ccls) (lsp))))
-
+   (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
 
 (provide 'init-cc)
