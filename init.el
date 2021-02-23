@@ -69,6 +69,7 @@
 (require 'init-yasnippet)
 (require 'init-git)
 (require 'init-csv)
+(require 'init-org)
 
 (use-package undo-tree
   :ensure t
