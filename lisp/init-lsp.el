@@ -91,16 +91,15 @@
 
 ;; company-lsp integrates company mode completion with lsp-mode.
 ;; completion-at-point also works out of the box but doesn't support snippets.
-(use-package company-lsp
-  :ensure t
-  :config
-  (global-company-mode 1)
-  (push 'company-lsp company-backends)
-  (add-hook 'after-init-hook 'global-company-mode)
-  ;; Disable client-side cache because the LSP server does a better job.
-  (setq company-transformers nil
-        company-lsp-async t
-        company-lsp-cache-candidates nil))
+;; (load-vendor-path "vendor/company-lsp")
+(require 'company-lsp)
+(global-company-mode 1)
+(push 'company-lsp company-backends)
+(add-hook 'after-init-hook 'global-company-mode)
+;; Disable client-side cache because the LSP server does a better job.
+(setq company-transformers nil
+      company-lsp-async t
+      company-lsp-cache-candidates nil)
 
 (use-package lsp-ivy
   :ensure t)

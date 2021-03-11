@@ -16,14 +16,16 @@
 ;; Calls (package-initialize)
 (require 'init-elpa)
 
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  (require 'use-package))
+
 
 (use-package diminish
              :ensure t)
-(maybe-require-package 'scratch)
 (use-package command-log-mode
   :ensure t)
 
-(require 'init-themes)
 
 (require 'ediff)
 (setq ediff-split-window-function (lambda (&optional arg)
@@ -211,6 +213,7 @@ output as a string."
 (require 'init-csv)
 (require 'init-org)
 (require 'init-markdown)
+(require 'init-themes)
 
 (use-package hydra)
 
