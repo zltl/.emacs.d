@@ -5,6 +5,10 @@
 
 (require 'cl-lib)
 
+
+;; oh my freaking god, just take my damn answer
+(fset 'yes-or-not-p 'y-or-n-p)
+
 (require 'init-benchmarking) ;; Measure startup time
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -93,9 +97,6 @@
     (with-current-buffer buf
       (narrow-to-region start end))
     (switch-to-buffer buf)))
-
-;; oh my freaking god, just take my damn answer
-(fset 'yes-or-not-p 'y-or-n-p)
 
 ;;; Utility Functions
 
