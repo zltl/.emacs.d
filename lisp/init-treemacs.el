@@ -1,3 +1,50 @@
+
+(use-package projectile
+  :diminish projectile-mode
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :init
+  (put 'projectile-project-name 'safe-local-variable 'stringp)
+  (put 'projectile-project-compilation-cmd 'safe-local-variable 'stringp)
+  (put 'projectile-use-git-grep 'safe-local-variable 'booleanp)
+  :config
+  (projectile-mode 1)
+  (setq projectile-completion-system 'ivy)
+  ;; seting the remote file exists cache to an hour, I'd rather things
+  ;; error out weirdly than slow down all find-files!
+  (setq projectile-file-exists-remote-cache-expire (* 60 60))
+  (setq projectile-indexing-method 'alien)
+  (setq projectile-enable-caching t)
+
+  ;; this replaces the old `projectile-compile-project' to use the
+  ;; project name in the compilation buffer. Let's me run all ze
+  ;; compilations!
+  (defun cm/projectile-compile-project (arg &optional dir)
+         "Run project compilation command, using the project name
+
+ Normally you'll be prompted for a compilation command, unless
+ variable `compilation-read-command'.  You can force the prompt
+ with a prefix ARG."
+         (interactive "P")
+         (let* ((project-root (if dir
+                                  dir
+                                (projectile-project-root)))
+                (default-directory project-root)
+                (default-cmd (projectile-compilation-command project-root))
+                (compilation-cmd (if (or compilation-read-command arg)
+                                     (projectile-read-command "Compile command: "
+                                                              default-cmd)
+                                   default-cmd)))
+           (puthash project-root compilation-cmd projectile-compilation-cmd-map)
+           (save-some-buffers (not compilation-ask-about-save)
+                              (lambda ()
+                                (projectile-project-buffer-p (current-buffer)
+                                                             project-root)))
+           (with-current-buffer
+               (compilation-start compilation-cmd nil '(lambda (x) (concat "*compilation:" (projectile-project-name) "*")))
+               (setq-local projectile-project-name (projectile-project-name)))))
+  )
+
+
 (use-package treemacs
   :ensure t
   :defer t
