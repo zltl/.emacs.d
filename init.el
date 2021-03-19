@@ -24,6 +24,10 @@
 (eval-when-compile
   (require 'use-package))
 
+;; utf-8
+(set-terminal-coding-system 'utf-8)
+(modify-coding-system-alist 'process "*" 'utf-8)
+(setq default-process-coding-system '(utf-8 . utf-8))
 
 (use-package diminish
              :ensure t)
