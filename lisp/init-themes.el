@@ -1,13 +1,6 @@
 
 ;;; Code:
 
-(if (boundp 'menu-bar-mode)
-    (menu-bar-mode -1))
-(if (boundp 'tool-bar-mode)
-    (tool-bar-mode -1))
-(if (boundp 'scroll-bar-mode)
-    (scroll-bar-mode -1))
-
 ;; empty-lines notification.
 (set-default 'indicate-empty-lines t)
 
