@@ -1,4 +1,4 @@
-(require 'go-mode)
+(use-package go-mode :ensure t)
 
 (add-auto-mode 'go-mode "\\.go\\'")
 

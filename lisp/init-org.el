@@ -41,10 +41,10 @@
         org-brain-file-entries-use-title nil))
 
 ;; Allows you to edit entries directly from org-brain-visualize
-(use-package polymode
-  :ensure t
-  :config
-  (add-hook 'org-brain-visualize-mode-hook #'org-brain-polymode))
+;; (use-package polymode
+;;  :ensure t
+;;  :config
+;;  (add-hook 'org-brain-visualize-mode-hook #'org-brain-polymode))
 
 (use-package org-journal :ensure t
   :defer t
@@ -61,7 +61,5 @@
 (use-package orgit :ensure t)
 (use-package ox-clip :ensure t)
 (use-package ob-go :ensure t)
-
-(use-package gnuplot :enxure t)
 
 (provide 'init-org)

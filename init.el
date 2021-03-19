@@ -69,7 +69,7 @@
 (require 'init-dir)
 
 ;; smex
-(require 'smex)
+(use-package smex :ensure t)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -78,38 +78,57 @@
 ;; geting ido goodness everywhere else
 (ido-mode 1)
 (ido-everywhere 1)
-(require 'ido-completing-read+)
+(use-package ido-completing-read+ :ensure t)
 (ido-ubiquitous-mode 1)
 
 ;; find-file-in-project
-(require 'find-file-in-project)
+(use-package find-file-in-project :ensure t)
 
 (setq create-lockfiles nil)
 (setq make-backup-files nil)
-
-;; slime-style navigation for emacs lisp
-(require 'elisp-slime-nav)
-(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-  (add-hook hook 'elisp-slime-nav-mode))
 
 (require 'init-themes)
 (require 'init-org)
 
 ;; autopair
-(require 'autopair)
-(autopair-global-mode) ;; enable autopair in all buffers
+(use-package autopair :ensure t
+  :config
+  (autopair-global-mode) ;; enable autopair in all buffers  
+  )
 
-(require 'init-company)
-(require 'init-ivy)
-(require 'init-golang)
-(require 'init-cc)
+
+(require 'init-completion)
+(require 'init-flycheck)
 (require 'init-lsp)
+
+(use-package ctrlf :ensure t
+  :config
+  (ctrlf-mode +1))
+(use-package swiper :ensure t
+  :config
+  (setq ivy-use-virtual-buffers t
+        enable-recursive-minibuffers t))
+
+;; jump
+(use-package avy :ensure t
+  :bind (("C-'" . avy-goto-char-timer))
+  :config
+  (setq avy-background t
+        avy-all-windows t
+        avy-timeout-seconds 0.5))
+
+
+(use-package multiple-cursors
+  :ensure t
+  )
+
+(require 'init-cc)
+(require 'init-golang)
+
+
 (require 'init-yasnippet)
 (require 'init-csv)
 (require 'init-markdown)
-
-
-(use-package hydra)
 
 (use-package undo-tree
   :diminish undo-tree-mode

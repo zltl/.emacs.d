@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# use_package gitrepo dest
+function use_package() {
+    gitrepo=$1
+    dest=$2
+    if [ -d "${dest}" ]; then
+        echo "update ${gitrepo}"
+        cd ${dest}
+        git pull --recurse-submodules
+        cd -
+    else
+        echo "clone ${girepo}"
+        git clone --depth 1 $gitrepo $dest
+    fi
+}
+
+use_package "git@github.com:jwiegley/use-package.git" "vendor/use-package"
+use_package "git@github.com:tigersoldier/company-lsp.git" "vendor/company-lsp"

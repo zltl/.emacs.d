@@ -43,8 +43,6 @@ and move to the source code that caused it."
       (setq valgrind-command command))
     (compilation-start command t))
 
-
-(require 'cl-lib)
 (require 'cc-mode)
 
 (use-package cmake-mode
@@ -53,6 +51,29 @@ and move to the source code that caused it."
         (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                   ("\\.cmake\\'" . cmake-mode))
                 auto-mode-alist))
+  :ensure t)
+
+(use-package demangle-mode
+  :ensure t
+  :config
+  (add-hook 'llvm-mode-hook #'demangle-mode)
+  (add-hook 'compilation-minor-mode-hook 'demangle-mode))
+
+(use-package disaster
+  :ensure t)
+(use-package modern-cpp-font-lock :ensure t)
+(use-package opencl-mode :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.cl\\'" . opencl-mode)))
+(use-package glsl-mode :ensure t)
+(use-package company-glsl
+  :ensure t
+  :config
+  (when (executable-find "glslangValidator")
+    (add-to-list 'company-backends 'company-glsl)))
+
+
+(use-package ccls
   :ensure t)
 
 (use-package clang-format
@@ -98,19 +119,6 @@ and move to the source code that caused it."
 
 (define-key c-mode-base-map (kbd "RET") 'newline-and-indent)
 
-(defun my-c-mode-common-hook ()
-  ;; my customizations for all of c-mode and related modes  
-  (require 'dumb-jump)
-  ;; (lsp)
-  (setq dumb-jump-selector 'ivy)  
-  (local-set-key (kbd "M-g .") 'dumb-jump-go)
-  (local-set-key (kbd "M-g ,") 'dumb-jump-back)
-  (local-set-key (kbd "M-g o") 'dumb-jump-go-other-window)
-  (local-set-key (kdb "M-g i") 'dumb-jump-go-prompt)
-  (local-set-key (kbd "M-g x") 'dumb-jump-go-prefer-external)
-  (setq default-tab-width 4)  
-  (local-set-key (kbd "M-g z") 'dumb-jump-go-prefer-external-other-window))
-
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 (defun maybe-linux-style ()
@@ -155,4 +163,10 @@ and move to the source code that caused it."
   (eshell-command 
    (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
 
+
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                ))
 (provide 'init-cc)
