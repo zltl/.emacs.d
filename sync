@@ -12,7 +12,7 @@ function use_package() {
         git pull --recurse-submodules
         cd -
     else
-        echo "clone ${girepo}"
+        echo "clone ${gitrepo}"
         git clone --depth 1 $gitrepo $dest
     fi
 }
