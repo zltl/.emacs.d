@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p vendor
+
 # use_package gitrepo dest
 function use_package() {
     gitrepo=$1
