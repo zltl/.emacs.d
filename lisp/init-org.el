@@ -17,4 +17,11 @@
 
 (setq org-default-notes-file (concat org-directory "~/TODO/capture.org"))
 
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/TODO/todo.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/TODO/capture.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
+
+
 (provide 'init-org)
