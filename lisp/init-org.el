@@ -62,4 +62,6 @@
 (use-package ox-clip :ensure t)
 (use-package ob-go :ensure t)
 
+(use-package gnuplot :ensure t)
+
 (provide 'init-org)
