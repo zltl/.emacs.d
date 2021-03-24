@@ -239,8 +239,7 @@ or file path may exist now."
 (global-auto-revert-mode 1)
 (setq auto-revert-verbose t
       auto-revert-use-notify nil
-      auto-revert-stop-on-user-input nil
-      revert-without-query (list "."))
+      auto-revert-stop-on-user-input nil)
 
 (require 'recentf)
 (recentf-mode 1)
@@ -288,5 +287,9 @@ or file path may exist now."
   )
 
 (add-hook 'imenu-after-jump-hook #'recenter)
+
+;; diminish
+(use-package diminish :ensure t)
+(diminish 'eldoc-mode)
 
 (provide 'init-editor)

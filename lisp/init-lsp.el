@@ -2,14 +2,17 @@
 ;;; lsp mode
 (use-package lsp-mode
   :ensure t
+  :diminish nil
   :commands lsp
   :hook
-  (go-mode . lsp-deferred)
-  (c++-mode . lsp-deferred)
-  (c-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (go-mode . lsp)
+  (c++-mode . lsp)
+  (c-mode . lsp)
+  (python-mode . lsp)
   :config
   (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
+  (setq lsp-enable-file-watchers t
+        lsp-file-watch-threshold 100000)
   )
 
 ;; Optional - provides fancier overlays.
@@ -28,31 +31,33 @@
         ("C-c u" . lsp-ui-imenu))
   :hook (lsp-mode . lsp-ui-mode)
   :config
-  (setq lsp-ui-doc-enable t
-        lsp-enable-symbol-highlighting t
-        lsp-lens-enable t
-        lsp-headerline-breadcrumb-enable t
-        lsp-ui-sideline-enable t
+  (setq lsp-ui-sideline-enable t
+        lsp-ui-sideline-delay 0.2
+        lsp-ui-sideline-show-diagnostics t
+        lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-show-code-actions t
         lsp-modeline-code-actions-enable t
-        lsp-ui-doc-use-childframe t
-           lsp-ui-doc-include-signature t
-        lsp-ui-sideline-enable nil
-        lsp-ui-flycheck-enable t
-           )
+        lsp-signature-render-documentation t
+        lsp-enable-symbol-highlighting t
+        lsp-ui-sideline-update-mode t
+        lsp-ui-doc-enable t
+        lsp-eldoc-enable-hover t
+        lsp-ui-imenu-auto-refresh t
+        lsp-ui-imenu-refresh-delay 1
+        )
   )
 
 ;; company-lsp integrates company mode completion with lsp-mode.
 ;; completion-at-point also works out of the box but doesn't support snippets.
 ;; (load-vendor-path "vendor/company-lsp")
-(require 'company-lsp)
-(global-company-mode 1)
-(push 'company-lsp company-backends)
-(add-hook 'after-init-hook 'global-company-mode)
+;; (require 'company-lsp)
+;; (global-company-mode 1)
+;; (push 'company-lsp company-backends)
+;; (add-hook 'after-init-hook 'global-company-mode)
 ;; Disable client-side cache because the LSP server does a better job.
-(setq company-transformers nil
-      company-lsp-async t
-      company-lsp-cache-candidates nil)
+;; (setq company-transformers nil
+;;       company-lsp-async t
+;;       company-lsp-cache-candidates nil)
 
 (use-package lsp-ivy
   :ensure t)

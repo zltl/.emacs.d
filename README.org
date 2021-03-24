@@ -1,0 +1,8 @@
+
+
+* ccls
+for cmake, create compile_commands then link it to project source dir.
+#+begin_src 
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+#+end_src
+

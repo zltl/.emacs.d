@@ -71,8 +71,12 @@
 ;; smex
 (use-package smex :ensure t)
 (smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+(use-package counsel :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'counsel-M-x))
+
+
 
 ;; ido-completing-read-plus
 ;; geting ido goodness everywhere else
@@ -92,14 +96,13 @@
 
 ;; autopair
 (use-package autopair :ensure t
+  :diminish nil
   :config
   (autopair-global-mode) ;; enable autopair in all buffers  
   )
 
-
 (require 'init-completion)
 (require 'init-flycheck)
-(require 'init-lsp)
 
 (use-package ctrlf :ensure t
   :config
@@ -122,19 +125,20 @@
   :ensure t
   )
 
+
 (require 'init-cc)
 (require 'init-golang)
+(require 'init-lsp)
 
-
-(require 'init-yasnippet)
 (require 'init-csv)
 (require 'init-markdown)
+
+(diminish 'abbrev-mode nil)
 
 (use-package undo-tree
   :diminish undo-tree-mode
   :ensure t
   :init (global-undo-tree-mode))
-
 
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)

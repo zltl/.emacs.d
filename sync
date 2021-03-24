@@ -19,3 +19,5 @@ function use_package() {
 
 use_package "git@github.com:jwiegley/use-package.git" "vendor/use-package"
 use_package "git@github.com:tigersoldier/company-lsp.git" "vendor/company-lsp"
+
+mkdir -p irony

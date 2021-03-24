@@ -1,5 +1,10 @@
 
 
+(use-package yasnippet :ensure t
+  :config
+  (yas-global-mode 1))
+(diminish 'yas-minor-mode nil)
+
 ;; Company mode is a standard completion package that works well with lsp-mode.
 (use-package company
   :ensure t
@@ -12,7 +17,6 @@
         company-tooltip-limit 20
         company-show-numbers t
         company-minimum-prefix-length 1))
-
 
 (use-package ivy
   :diminish ivy-mode
