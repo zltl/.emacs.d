@@ -246,6 +246,8 @@ or file path may exist now."
 (setq recentf-max-menu-items 200
       recentf-max-saved-items 200
       recentf-save-file (concat my-cache-dir "recentf"))
+(add-hook 'find-file-hook 'recentf-save-list)
+(run-at-time (current-time) 300 'recentf-save-list)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 (require 'savehist)

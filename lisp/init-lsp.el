@@ -2,7 +2,7 @@
 ;;; lsp mode
 (use-package lsp-mode
   :ensure t
-  :diminish nil
+  ;; :diminish nil
   :commands lsp
   :hook
   (go-mode . lsp)

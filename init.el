@@ -19,12 +19,13 @@
 ;; than this to make UTF-8 the default coding system:
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))       ; pretty
-(prefer-coding-system 'utf-8)            ; pretty
-(setq locale-coding-system 'utf-8)       ; please
+(prefer-coding-system 'utf-8-unix)       ; pretty
+(setq locale-coding-system 'utf-8-unix)  ; please
 ;; The clipboard's on Windows could be in a wider encoding than utf-8 (likely
 ;; utf-16), so let Emacs/the OS decide what encoding to use there.
 (unless IS-WINDOWS
-    (setq selection-coding-system 'utf-8)) ; with sugar on top
+  (setq selection-coding-system 'utf-8)) ; with sugar on top
+(setq default-buffer-file-coding-system 'utf-8-unix)
 
 ;; Prevent unwanted runtime builds in gccemacs (native-comp); packages are
 ;; compiled ahead-of-time when they are installed and site files are compiled
