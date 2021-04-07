@@ -9,6 +9,7 @@
   (c++-mode . lsp)
   (c-mode . lsp)
   (python-mode . lsp)
+  (lsp-mode . lsp-enable-which-key-integration)
   :config
   (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
   (setq lsp-enable-file-watchers t

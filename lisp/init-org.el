@@ -64,5 +64,8 @@
 
 (use-package gnuplot :ensure t)
 
+(add-hook (quote org-mode-hook)
+          (lambda ()
+            (org-shifttab 2)))
 
 (provide 'init-org)
