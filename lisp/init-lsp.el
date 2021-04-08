@@ -37,8 +37,9 @@
         lsp-ui-sideline-show-diagnostics t
         lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-show-code-actions t
+        lsp-signature-auto-activate t
+        lsp-signature-render-documentation t        
         lsp-modeline-code-actions-enable t
-        lsp-signature-render-documentation t
         lsp-enable-symbol-highlighting t
         lsp-ui-sideline-update-mode t
         lsp-ui-doc-enable t
