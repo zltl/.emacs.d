@@ -13,7 +13,7 @@
   :config
   (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
   (setq lsp-enable-file-watchers t
-        lsp-file-watch-threshold 100000)
+        lsp-file-watch-threshold 10000)
   )
 
 ;; Optional - provides fancier overlays.

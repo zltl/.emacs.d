@@ -126,7 +126,17 @@
   :ensure t
   )
 
+(use-package ace-window
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x o") 'ace-window))
 
+(use-package lua-mode
+  :ensure t
+  :config
+  (setq lua-indent-level 4))
+
+(require 'bazel)
 (require 'init-cc)
 (require 'init-golang)
 (require 'init-lsp)

@@ -19,5 +19,6 @@ function use_package() {
 
 use_package "git@github.com:jwiegley/use-package.git" "vendor/use-package"
 use_package "git@github.com:tigersoldier/company-lsp.git" "vendor/company-lsp"
+use_package "git@github.com:bazelbuild/emacs-bazel-mode.git" "vendor/bazel-mode"
 
 mkdir -p irony
